@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name Here — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.03);
+      --accent:#7c5cff;
+      --accent-2:#00e0ff;
+      --success:#4ade80;
+      --radius:14px;
+      --maxw:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background: radial-gradient(800px 400px at 10% 10%, rgba(124,92,255,0.06), transparent),
+                  radial-gradient(600px 300px at 90% 90%, rgba(0,224,255,0.03), transparent),
+                  linear-gradient(180deg, var(--bg), #071028 80%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .frame{
+      width:100%;
+      max-width:var(--maxw);
+      border-radius:20px;
+      padding:26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      box-shadow: 0 20px 50px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    header {
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    .brand {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .photo {
+      width:86px;
+      height:86px;
+      border-radius:14px;
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:"Space Grotesk", "Inter", sans-serif;
+      font-weight:700;
+      font-size:28px;
+      color:#061224;
+      box-shadow: 0 8px 26px rgba(0,0,0,0.5);
+      flex:0 0 86px;
+    }
+
+    .title {
+      line-height:1;
+    }
+    .title h1 {
+      margin:0;
+      font-size:20px;
+      letter-spacing:0.2px;
+      font-weight:800;
+    }
+    .title .role {
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .actions {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .icon-btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      color:var(--accent-2);
+      cursor:pointer;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .icon-btn.ghost { color:var(--muted); border-style:dashed; }
+    .icon-btn small { color:var(--muted); font-weight:500; font-size:12px }
+
+    main {
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.006));
+      border-radius: var(--radius);
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .hero {
+      padding:18px;
+      border-radius:12px;
+      margin-bottom:12px;
+    }
+    .hero h2 { margin:0 0 8px 0; font-size:18px }
+    .hero p { margin:0 0 12px 0; color:var(--muted) }
+
+    .cta-row { display:flex; gap:10px; margin-top:8px }
+    .cta { padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700; }
+    .cta.primary { background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:#051422 }
+    .cta.ghost { border:1px solid rgba(255,255,255,0.03); color:var(--muted); background:transparent }
+
+    /* projects */
+    .projects { display:grid; gap:12px; }
+    .project {
+      padding:12px;
+      border-radius:10px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .project:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.5) }
+    .project h4 { margin:0 0 6px 0 }
+    .project p { margin:0; color:var(--muted); font-size:13px }
+
+    .meta { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap }
+    .chip { padding:6px 10px; border-radius:999px; background:var(--glass); color:var(--muted); font-size:13px; border:1px solid rgba(255,255,255,0.02) }
+
+    /* Sidebar */
+    .sidebar { display:flex; flex-direction:column; gap:12px }
+    .contact {
+      display:flex; gap:12px; align-items:center;
+    }
+    .contact .left { flex:0 0 56px; }
+    .contact .left .mail {
+      width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-size:20px
+    }
+    .socials { display:flex; gap:8px; margin-top:10px }
+    .socials a { width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.02); background:rgba(255,255,255,0.01); color:var(--muted); text-decoration:none }
+
+    /* Resume list */
+    .info-list { display:flex; flex-direction:column; gap:10px; }
+    .info-row { display:flex; justify-content:space-between; gap:10px; align-items:center; padding:8px;border-radius:10px;background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02) }
+    .info-row .left { color:var(--muted); font-size:13px }
+    .info-row .right { font-weight:700 }
+
+    footer { margin-top:18px; text-align:center; color:var(--muted); font-size:13px }
+
+    /* small screens */
+    @media (max-width:980px){
+      main { grid-template-columns: 1fr; }
+      .photo { width:72px; height:72px; font-size:22px }
+      .actions { gap:6px }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame" role="main" aria-label="Personal portfolio — Your Name Here">
+    <header>
+      <div class="brand" aria-hidden="false">
+        <div class="photo" aria-hidden="true">YN</div>
+        <div class="title">
+          <h1>Your Name Here</h1>
+          <div class="role">Cybersecurity & Networking • Practical ML for security</div>
+        </div>
+      </div>
+
+      <div class="actions" role="region" aria-label="Top actions">
+        <a id="downloadResume" class="icon-btn" href="#" title="Download résumé">⬇ Download Résumé</a>
+        <button id="themeToggle" class="icon-btn ghost" aria-pressed="false" title="Toggle light/dark">🌓 <small>Theme</small></button>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <section>
+        <div class="panel hero" aria-labelledby="about-title">
+          <h2 id="about-title">Hello — I build small, practical security tools</h2>
+          <p>I focus on lightweight tooling you can actually run: phishing detection, Raspberry Pi NIDS, lab automation, and reliable observability. I favor fast deploys and clear logs.</p>
+
+          <div class="cta-row" role="group" aria-label="Primary CTAs">
+            <a class="cta primary" href="#projects">See projects</a>
+            <a class="cta ghost" href="#contact">Contact / Hire</a>
+          </div>
+        </div>
+
+        <div class="panel" id="projects" aria-labelledby="projects-title" style="margin-top:12px">
+          <h3 id="projects-title" style="margin:0 0 12px 0">Selected Projects</h3>
+          <div class="projects" id="projectsList">
+            <article class="project" aria-labelledby="p1">
+              <h4 id="p1">PhishGuard — Multilingual Phishing Detector</h4>
+              <p>URL heuristics + confidence-aware ML layer. FastAPI backend, batch scanner for large corpora; designed to be lightweight and explainable.</p>
+              <div class="meta">
+                <span class="chip">Python</span>
+                <span class="chip">FastAPI</span>
+                <span class="chip">ML</span>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p2">
+              <h4 id="p2">PiNIDS — Raspberry Pi Network IDS</h4>
+              <p>Log-based detection for port scans, brute force, and ARP anomalies. Prioritizes memory & CPU efficiency for Pi-class deployments.</p>
+              <div class="meta">
+                <span class="chip">Raspberry Pi</span>
+                <span class="chip">Wireshark</span>
+                <span class="chip">Syslog</span>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p3">
+              <h4 id="p3">Lab Automation — OSPF & STP</h4>
+              <p>Automated multi-area OSPFv2 topologies and STP experiments (Ansible + scripted configs). Useful for reproducible network tests.</p>
+              <div class="meta">
+                <span class="chip">Ansible</span>
+                <span class="chip">Networking</span>
+                <span class="chip">Testing</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:12px" id="skills" aria-labelledby="skills-title">
+          <h3 id="skills-title" style="margin:0 0 12px 0">Skills</h3>
+          <div class="meta" style="gap:10px">
+            <span class="chip">Python</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">Scikit-learn</span>
+            <span class="chip">OSPF / STP</span>
+            <span class="chip">Wireshark</span>
+            <span class="chip">Raspberry Pi</span>
+            <span class="chip">ELK</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN / SIDEBAR -->
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="panel contact" id="contact">
+          <div class="left">
+            <div class="mail" aria-hidden="true">✉️</div>
+          </div>
+          <div>
+            <div style="font-weight:700">Contact</div>
+            <div style="color:var(--muted); font-size:13px">your.email@example.com</div>
+            <div style="height:10px"></div>
+            <a class="cta ghost" href="mailto:your.email@example.com?subject=Hi%20there">Email me</a>
+          </div>
+        </div>
+
+        <div class="panel" aria-labelledby="links-title">
+          <h4 id="links-title" style="margin:0 0 10px 0">Links</h4>
+          <div class="info-list">
+            <div class="info-row"><div class="left">GitHub</div><div class="right"><a href="#" style="color:var(--accent)">github.com/yourusername</a></div></div>
+            <div class="info-row"><div class="left">LinkedIn</div><div class="right"><a href="#" style="color:var(--accent)">linkedin.com/in/yourprofile</a></div></div>
+            <div class="info-row"><div class="left">Resume</div><div class="right">Download</div></div>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="socials" role="navigation" aria-label="social">
+            <a href="#" title="GitHub">GH</a>
+            <a href="#" title="LinkedIn">IN</a>
+            <a href="#" title="Twitter">TW</a>
+          </div>
+        </div>
+
+        <div class="panel" aria-labelledby="education-title">
+          <h4 id="education-title" style="margin:0 0 10px 0">Education & Experience</h4>
+          <div style="font-weight:700">B.Sc. Computer Science (in progress)</div>
+          <div class="meta" style="margin-top:8px">
+            <span class="chip">Final Year</span>
+            <span class="chip">University</span>
+          </div>
+
+          <div style="height:10px"></div>
+          <div style="color:var(--muted); font-size:13px">Open to internships & entry-level roles in security, automation, and dev tooling.</div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">
+        <div style="color:var(--muted)">Built with care • Single-file portfolio</div>
+        <div style="color:var(--muted)">•</div>
+        <div style="color:var(--muted)">Replace placeholders before sharing</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle with persistent preference
+    (function(){
+      const btn = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const LIGHT = 'light-mode';
+      const saved = localStorage.getItem('yn_theme');
+      if(saved === 'light') document.body.classList.add(LIGHT);
+
+      function applyLight(enable){
+        if(enable){
+          root.style.setProperty('--bg','#f7fafc');
+          root.style.setProperty('--card','#ffffff');
+          root.style.setProperty('--muted','#475569');
+          root.style.setProperty('--glass','rgba(2,6,23,0.03)');
+          root.style.setProperty('--accent','#7c5cff');
+          root.style.setProperty('--accent-2','#00a3cc');
+          document.body.style.color='#07122a';
+          btn.setAttribute('aria-pressed','true');
+        } else {
+          root.style.setProperty('--bg','#0b1020');
+          root.style.setProperty('--card','#0f1724');
+          root.style.setProperty('--muted','#9aa4b2');
+          root.style.setProperty('--glass','rgba(255,255,255,0.03)');
+          root.style.setProperty('--accent','#7c5cff');
+          root.style.setProperty('--accent-2','#00e0ff');
+          document.body.style.color='';
+          btn.setAttribute('aria-pressed','false');
+        }
+      }
+
+      // initialize
+      applyLight(!!saved && saved === 'light');
+
+      btn.addEventListener('click', (e)=>{
+        const isLight = document.body.classList.toggle(LIGHT);
+        applyLight(isLight);
+        localStorage.setItem('yn_theme', isLight ? 'light' : 'dark');
+      });
+    })();
+
+    // Generate a simple résumé text file and trigger download
+    (function(){
+      const btn = document.getElementById('downloadResume');
+      function resumeText(){
+        return [
+          "Your Name Here — Cybersecurity & Networking",
+          "",
+          "Profile:",
+          "Final-year Computer Science student building lightweight security tooling — phishing detection, Raspberry Pi NIDS, network automation.",
+          "",
+          "Projects:",
+          "1) PhishGuard — Multilingual Phishing Detector (FastAPI, heuristics + ML).",
+          "2) PiNIDS — Raspberry Pi Network IDS (log-based detection).",
+          "3) Lab Automation — OSPF & STP testing and automation (Ansible).",
+          "",
+          "Skills: Python, FastAPI, scikit-learn, OSPF, STP, Wireshark, Raspberry Pi, ELK, Git",
+          "",
+          "Contact: your.email@example.com",
+          "",
+          "Notes: This résumé is a lightweight export from a single-file portfolio. Replace placeholders before sharing."
+        ].join("\\n");
+      }
+
+      function download(filename, text){
+        const blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 800);
+      }
+
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        download('resume_your_name_here.txt', resumeText());
+      });
+    })();
+
+    // Small accessibility: allow keyboard focus styles only if keyboard used
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab') {
+          document.documentElement.style.setProperty('--kbd-focus','outline: 3px solid rgba(124,92,255,0.18)');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>
